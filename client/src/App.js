@@ -20,6 +20,7 @@ import DonateBlood from "./screens/DonateBlood/DonateBlood";
 import RequestBlood from "./screens/RequestBlood/RequestBlood";
 import PastRequests from "./screens/RequestBlood/PastRequests";
 import ChatBot from "./screens/ChatBot/Chatbot";
+import BloodBankHome from "./screens/desktop/BloodBank/Home";
 
 function App() {
   return (
@@ -28,13 +29,15 @@ function App() {
         <Routes>
           <Route path="/donate" element={<DonateBlood />} />
           <Route path={"/login"} exact element={<Login />} />
-          <Route path={"/"} exact element={<ChatBot />} />
+          <Route path={"/"} exact element={<Home />} />
           <Route path="/new-profile" exact element={<NewProfile />} />
           <Route path="/user-profile" exact element={<Profile />} />
           <Route path="/request" exact element={<RequestBlood />} />
           <Route path="/past-requests" exact element={<PastRequests />} />
+          <Route path="/blood-bank/home" exact element={<BloodBankHome />} />
+          <Route path="/chat-bot" exact element={<ChatBot />} />
 
-          <Route path="/" exact element={<Splash />} />
+          {/* <Route path="/" exact element={<Splash />} /> */}
 
           {/* <Route path="/login-screen" exact component={LoginScreen} /> */}
           <Route component={BottomNav}>
@@ -45,7 +48,7 @@ function App() {
           <Route
             path="/redirection/:accessToken"
             element={<RedirectionPage />}
-          /> 
+          />
         </Routes>
       </Wrapper>
       <BottomNav />

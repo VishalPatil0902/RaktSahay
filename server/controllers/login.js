@@ -15,6 +15,14 @@ const handleLoginRequest = async (req, res) => {
       redirectUrl
     );
 
+    const refreshToken = req.cookies?.RSrefreshToken;
+
+    if (refreshToken) {
+      const accessToken = await handleRefreshLogin(refreshToken);
+      const redirectURL = `${process.env.CLIENT_URL}/redirection/${accessToken}`;
+      return res.redirect(redirectURL);
+    }
+
     const authUrlOptions = {
       access_type: "offline",
       scope: [
@@ -203,7 +211,7 @@ const registerUser = async (req, res) => {
 
 const logoutUser = async (req, res) => {
   try {
-    res.cookie("refreshToken", "", {
+    res.cookie("RSrefreshToken", "", {
       path: "/",
       maxAge: 0,
       httpOnly: true,

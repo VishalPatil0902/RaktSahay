@@ -69,7 +69,7 @@ const Profile = () => {
       <h1 className="text-4xl font-bold text-center my-4">Profile</h1>
       <div
         style={{ overflow: "hidden" }}
-        className="pic size-40 rounded-full border-2 border-solid border-[#EA3A60] my-3"
+        className="pic size-40 rounded-full my-3"
       >
         <img
           src={data.profilePicture}
@@ -98,15 +98,15 @@ const Profile = () => {
                 <h1 className="text-3xl font-bold text-[#EA3A60]">
                   Your Profile
                 </h1>
-                {!editable && (
+                {/* {!editable && (
                   <FiEdit
                     className="text-[#EA3A60] text-2xl absolute top-2 right-4"
                     onClick={() => setEditable(!editable)}
                   />
-                )}
+                )} */}
                 <input
                   readOnly
-                  className="p-3 rounded-xl border-solid border-[#EA3A60] border-b-2 text-xl w-3/4 max-w-md"
+                  className="pt-3 border-solid border-[#EA3A60] border-b-2 text-xl w-full max-w-md bg-[transparent]"
                   type="text"
                   name="name"
                   placeholder="Enter your full name..."
@@ -115,7 +115,7 @@ const Profile = () => {
                 />
                 <input
                   readOnly
-                  className="p-3 rounded-xl border-solid border-[#EA3A60] border-b-2 text-xl w-3/4 max-w-md"
+                  className="pt-3 border-solid border-[#EA3A60] border-b-2 text-xl w-full max-w-md bg-[transparent]"
                   type="text"
                   name="email"
                   placeholder="Enter your email..."
@@ -126,7 +126,7 @@ const Profile = () => {
                 <input
                   readOnly
                   // onChange={(e) => setNumber(e.target.value)}
-                  className="p-3 rounded-xl border-solid border-[#EA3A60] border-b-2 text-xl w-3/4 max-w-md"
+                  className="pt-3 border-solid border-[#EA3A60] border-b-2 text-xl w-full max-w-md bg-[transparent]"
                   type="text"
                   name="contact_no"
                   placeholder="Enter your phone number..."
@@ -137,7 +137,7 @@ const Profile = () => {
                 <textarea
                   readOnly
                   // onChange={(e) => setAddress(e.target.value)}
-                  className="p-3 rounded-xl border-b-2 border-solid border-[#EA3A60] outline-none text-xl w-3/4 max-w-md"
+                  className="pt-3 rounded-xl border-b-2 border-solid border-[#EA3A60] outline-none text-xl w-full bg-[transparent] max-w-md"
                   name="address"
                   id=""
                   cols="30"
@@ -150,7 +150,7 @@ const Profile = () => {
                   <select
                     disabled
                     // onChange={(e) => setState(e.target.value)}
-                    className="p-3 rounded-xl border-b-2 border-solid border-[#EA3A60] outline-none text-xl w-3/4 max-w-md"
+                    className="pt-3 border-b-2 border-solid border-[#EA3A60] outline-none text-xl w-full bg-[transparent] max-w-md"
                     name="state"
                     id=""
                     value={data.state}
@@ -165,7 +165,7 @@ const Profile = () => {
 
                   <select
                     disabled
-                    className="p-3 rounded-xl border-b-2 border-solid border-[#EA3A60] outline-none text-xl w-3/4 max-w-md"
+                    className="pt-3 border-b-2 border-solid border-[#EA3A60] outline-none text-xl w-full bg-[transparent] max-w-md"
                     name="city"
                     id=""
                     // onChange={(e) => setCity(e.target.value)}
@@ -187,7 +187,7 @@ const Profile = () => {
                 {/* ... */}
                 <select
                   disabled
-                  className="p-3 rounded-xl border-b-2 border-solid border-[#EA3A60] outline-none text-xl w-3/4 max-w-md"
+                  className="pt-3 border-b-2 border-solid border-[#EA3A60] outline-none text-xl w-full bg-[transparent] max-w-md"
                   name="bloodType"
                   id=""
                   // onChange={(e) => setBloodGroup(e.target.value)}
@@ -204,7 +204,7 @@ const Profile = () => {
                 <input
                   readOnly
                   // onChange={(e) => setIdCardNumber(e.target.value)}
-                  className="p-3 rounded-xl border-solid border-[#EA3A60] border-b-2 text-xl w-3/4 max-w-md"
+                  className="pt-3 border-solid border-[#EA3A60] border-b-2 text-xl w-full bg-[transparent] max-w-md"
                   type="text"
                   name="idCardNumber"
                   placeholder="Enter your ID Card Number..."
@@ -212,14 +212,14 @@ const Profile = () => {
                   value={data.idCardNumber}
                 />
                 {/* ... */}
-                {editable && (
+                {/* {editable && (
                   <button
                     onClick={() => setEditable(false)}
                     className="p-4 rounded-xl mt-8 w-full max-w-md bg-[#EA3A60] text-white text-xl font-bold"
                   >
                     Save Changes
                   </button>
-                )}
+                )} */}
               </div>
             </AccordionPanel>
           </AccordionItem>

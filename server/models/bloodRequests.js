@@ -3,10 +3,6 @@ const mongoose = require("mongoose");
 
 const bloodRequests = new mongoose.Schema({
 
-    id: {
-        type: String,
-        required: true
-    },
     name: {
         type: String,
         required: true,
@@ -22,7 +18,7 @@ const bloodRequests = new mongoose.Schema({
     },
     requestStatus: {
         type: String,
-        enum: ['Pending', 'Accepted', 'Rejected'],
+        enum: ['Pending', 'Accepted'],
         default: 'Pending',
     },
     fullfilled: {
@@ -40,11 +36,11 @@ const bloodRequests = new mongoose.Schema({
     takenBy: {
         email: {
             type: String,
-            required: [true, "Email of donor is required"]
+            required: [false, "Email of donor is required"]
         },
         name: {
             type: String,
-            required: [true, "Name of donor is required"]
+            required: [false, "Name of donor is required"]
         }
     }
 

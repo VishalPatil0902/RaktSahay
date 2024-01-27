@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const controllerLogin = require("../controllers/login");
+const controllerHospital = require("../controllers/hospitals");
 const controllerEmergencyRequests = require("../controllers/emergencyRequests");
 
 router.get("/callback", controllerLogin.callbackCheck);
@@ -8,6 +9,10 @@ router.get("/login", controllerLogin.handleLoginRequest);
 router.get(
   "/emergency-requests/all",
   controllerEmergencyRequests.getAllEmergencyRequests
+);
+router.get(
+  "/hospitals/all",
+  controllerHospital.getAllHospitals
 );
 router.get("/logout", controllerLogin.logoutUser);
 

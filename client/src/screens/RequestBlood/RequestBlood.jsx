@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
-import { Button, Input, FormControl, FormLabel, Select, Grid, GridItem, useToast } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react'
+import { Button, Input, FormControl, FormLabel, Select, Grid, GridItem, useToast, AutoCom } from '@chakra-ui/react';
 import axios from 'axios';
 import { url } from '../../Global/URL';
 import showToast from '../../Global/Toast';
 import { getUserDetails } from '../../Global/authUtils';
 import { useNavigate } from 'react-router-dom';
+
 
 const RequestBlood = () => {
     const [name, setName] = useState('');
@@ -14,6 +15,29 @@ const RequestBlood = () => {
     const toast = useToast();
     const navigate = useNavigate();
     const [buttonLoading, setButtonLoading] = useState(false);
+    const [hospitals, setHospitals] = useState([]);
+
+    const getHospitals = async () => {
+        try {
+            const res = await axios.get(url + `/hospitals/all?select=name,city`);
+            var data = []
+            for (let i = 0; i < (res.data.data).length; i++) {
+                data.push({name: res.data.data[i].name, city:  res.data.data[i].city});
+            }
+            setHospitals(data);
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    useEffect(() => {
+        try {
+
+            getHospitals();
+
+        } catch (error) {
+            console.log(error)
+        }
+    },[])
 
     const handleRequestBlood = async () => {
         var user = null;
@@ -26,9 +50,9 @@ const RequestBlood = () => {
             console.log(error);
             navigate('/login');
         }
-        try {     
-            const postedBy = {name: user.name, contact_no: user.contact_no, email: user.email}
-            const data = {postedBy, name: name, bloodType: bloodType, unitsRequested: unitsRequested, hospital: hospital}
+        try {
+            const postedBy = { name: user.name, contact_no: user.contact_no, email: user.email }
+            const data = { postedBy, name: name, bloodType: bloodType, unitsRequested: unitsRequested, hospital: hospital }
             console.log(data);
             const response = await axios.post(url + '/post-emergency-request', data);
             console.log(response.data)
@@ -95,19 +119,27 @@ const RequestBlood = () => {
 
             <FormControl mt={4} p={2}>
                 <FormLabel>Hospital</FormLabel>
-                <Input
-                    type='text'
-                    placeholder='Enter hospital name'
+
+                <Select
+                    placeholder='Select Hospital'
                     colorScheme='red'
                     value={hospital}
                     onChange={(e) => setHospital(e.target.value)}
-                />
+                >
+                    {hospitals.map((hos) => {
+                        console.log(hos);
+                        return (
+                            <option value={hos.name}>{hos.name + ", "+ hos.city}</option>
+                        );
+                    })}
+                </Select>
+
             </FormControl>
 
             <Button isLoading={buttonLoading} mt={4} colorScheme='red' width={'100%'} onClick={handleRequestBlood}>
                 Request Blood
             </Button>
-            <Button mt={4} colorScheme='gray' color={'red'} width={'100%'} border={'solid 1px red'} onClick={()=> {
+            <Button mt={4} colorScheme='gray' color={'red'} width={'100%'} border={'solid 1px red'} onClick={() => {
                 return navigate('/past-requests');
             }}>
                 View Past Requests
